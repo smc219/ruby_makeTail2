@@ -1,10 +1,24 @@
 
+
+
 var maker = document.getElementById('maker-container');
 
+if(maker != null){
+    console.log("ok");
+} else {
+    console.log("no...");
+    maker = document.getElementById('maker-container');
+}
+
 function foldPane(button) {
+    if(maker == null) {
+        console.log("no...");
+        maker = document.getElementById('maker-container');
+    }
     let pane = button.nextElementSibling;
 
     pane.classList.toggle("visible");
+    // pane이 null이어서 그랬던 것으로 판명. 이 부분 추후 수정할 것.
     if (pane.style.width !== "20px") {
         pane.style.width = "20px";
         maker.style.gridTemplateColumns = "[selector]50px auto [pane]30% [button]auto"
@@ -16,9 +30,16 @@ function foldPane(button) {
 }
 
 var selectors = document.getElementsByClassName('choice-name');
+if (selectors != null) {
+    console.log("it's okay");
+} else {
+    console.log("no, it's not...")
+}
 var i;
 for (i = 0; i < selectors.length; i++) {
+    console.log("selector addEventListener working");
     selectors[i].addEventListener("click", function () {
+        console.log("selector working");
         this.parentElement.classList.toggle("active");
         let content = this.nextElementSibling;
         if (content.style.display === "flex") {
